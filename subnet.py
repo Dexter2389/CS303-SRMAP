@@ -8,7 +8,7 @@ def subnet_calc():
 
         while True:
             # Take IP as input
-            input_ip = raw_input("\nEnter the IP address: ")
+            input_ip = input("\nEnter the IP address: ")
 
             # Validate the IP
             octet_ip = input_ip.split(".")
@@ -23,7 +23,7 @@ def subnet_calc():
                     (0 <= int_octet_ip[3] <= 255):
                 break
             else:
-                print "Invalid IP, retry \n"
+                print("Invalid IP, retry \n")
                 continue
 
         # Predefine possible subnet masks
@@ -31,7 +31,7 @@ def subnet_calc():
         while True:
 
             # Take subnet mask as input
-            input_subnet = raw_input("\nEnter the Subnet Mask: ")
+            input_subnet = input("\nEnter the Subnet Mask: ")
 
             # Validate the subnet mask
             octet_subnet = [int(j) for j in input_subnet.split(".")]
@@ -44,10 +44,10 @@ def subnet_calc():
                     (octet_subnet[0] >= octet_subnet[1] >= octet_subnet[2] >= octet_subnet[3]):
                 break
             else:
-                print "Invalid subnet mask, retry\n"
+                print("Invalid subnet mask, retry\n")
                 continue
 
-# Converting IP and subnet to binary
+        # Converting IP and subnet to binary
 
         ip_in_binary = []
 
@@ -119,20 +119,20 @@ def subnet_calc():
         last_ip = ".".join([str(int(i,2)) for i in last_ip_host])
 
         # print all the computed results
-        print "\nThe entered ip address is: " + input_ip
-        print "The entered subnet mask is: " + input_subnet
-        print "Calculated number of hosts per subnet: {0}".format(str(no_hosts))
-        print "Calculated number of mask bits: {0}".format(str(no_ones))
-        print "Calculated wildcard mask is: {0}".format(wildcard)
-        print "The Network address is: {0}".format(network_add_dec_final)
-        print "The Broadcast address is: {0}".format(broadcast_add_dec_final)
-        print "IP address range is: {0} - {1}".format(first_ip, last_ip)
-        print "Maximum number of subnets is: " + str(2**abs(24 - no_ones))
+        print("\nThe entered ip address is: " + input_ip)
+        print("The entered subnet mask is: " + input_subnet)
+        print("Calculated number of hosts per subnet: {0}".format(str(no_hosts)))
+        print("Calculated number of mask bits: {0}".format(str(no_ones)))
+        print("Calculated wildcard mask is: {0}".format(wildcard))
+        print("The Network address is: {0}".format(network_add_dec_final))
+        print("The Broadcast address is: {0}".format(broadcast_add_dec_final))
+        print("IP address range is: {0} - {1}".format(first_ip, last_ip))
+        print("Maximum number of subnets is: " + str(2**abs(24 - no_ones)))
         list_ip = []
 
-        print ""
+        print("")
         # ask to generate a random ip in the range
-        if raw_input("Do you want to generate a random ip? [y/n]") == 'y':
+        if input("Do you want to generate a random ip? [y/n]") == 'y':
             while True:
                 randip = []
 
@@ -153,25 +153,25 @@ def subnet_calc():
 
                     # if all IPs in the host range are used, exit
                     if len(list_ip) == no_hosts:
-                        print "All IPs in the range used up, exiting\n"
+                        print("All IPs in the range used up, exiting\n")
                         break
                     continue
 
                 else:
-                    print random_ip_final + '\n'
+                    print(random_ip_final + '\n')
 
                 list_ip.append(random_ip_final)
-                print "List of generated IPs:" , sorted(list_ip) ,'\n'
+                print("List of generated IPs:" , sorted(list_ip) ,'\n')
 
-                if raw_input("\nGenerate another random IP? [y/n]") == 'y':
+                if input("\nGenerate another random IP? [y/n]") == 'y':
                     continue
                 else:
                     break
 
     except KeyboardInterrupt:
-        print "Interrupted by the User, exiting\n"
+        print("Interrupted by the User, exiting\n")
     except ValueError:
-        print "Seem to have entered an incorrect value, exiting\n"
+        print("Seem to have entered an incorrect value, exiting\n")
 
 # Calling the above defined function
 if __name__ == '__main__':

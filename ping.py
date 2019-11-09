@@ -12,11 +12,13 @@ ECHO_REPLY_TYPE = 0
 ECHO_REQUEST_CODE = 0
 ECHO_REPLY_CODE = 0
 REGISTRARS = ["google.com", "youtube.com", "facebook.com"]
-# REGISTRARS = ["example.com"]
 
 
-def print_raw_bytes(pkt: bytes) -> None:
-    """Printing the packet bytes"""
+def print_raw_bytes(pkt: bytes):
+    """
+    Printing the packet bytes
+    Returns None
+    """
     for i in range(len(pkt)):
         sys.stdout.write("{:02x} ".format(pkt[i]))
         if (i + 1) % 16 == 0:
@@ -51,13 +53,14 @@ def checksum(pkt: bytes) -> int:
     return result
 
 
-def parse_reply(my_socket: socket.socket, req_id: int, timeout: int, addr_dst: str) -> tuple:
+def parse_reply(my_socket: socket.socket, req_id: int, timeout: int, addr_dst: str):
     """
         Receive an Echo reply and parses it.
         Takes the following arguments: socket, request id, timeout, and the destination address. 
         Returns a tuple of the destination address, packet size, roundtrip time, time to live, and sequence number. 
         You need to modify lines between labels TODO and DONE. 
         This function should raise an error if the response message type, code, or checksum are incorrect.
+        Returns Tuple
     """
     time_left = timeout
     while True:
@@ -124,8 +127,11 @@ def parse_reply(my_socket: socket.socket, req_id: int, timeout: int, addr_dst: s
 
         return (addr_dst, pkt_size, rtt, ttl, seq_num)
 
-def format_request(req_id: int, seq_num: int) -> bytes:
-    """Format an Echo request"""
+def format_request(req_id: int, seq_num: int):
+    """
+    Format an Echo request
+    Returns Byte
+    """
     my_checksum = 0
     header = struct.pack(
         "bbHHh", ECHO_REQUEST_TYPE, ECHO_REQUEST_CODE, my_checksum, req_id, seq_num
@@ -145,8 +151,11 @@ def format_request(req_id: int, seq_num: int) -> bytes:
     return packet
 
 
-def send_request(addr_dst: str, seq_num: int, timeout: int = 1) -> tuple:
-    """Send an Echo Request"""
+def send_request(addr_dst: str, seq_num: int, timeout: int = 1):
+    """
+    Send an Echo Request
+    Returns Tuple
+    """
     result = None
     proto = socket.getprotobyname("icmp")
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, proto)
@@ -164,11 +173,12 @@ def send_request(addr_dst: str, seq_num: int, timeout: int = 1) -> tuple:
     return result
 
 
-def ping(host: str, pkts: int, timeout: int = 1) -> None:
+def ping(host: str, pkts: int, timeout: int = 1):
     """
         Main loop
         Takes a destination host, number of packets to send, and timeout as arguments. 
         Displays host statistics. You need to modify lines between labels TODO and DONE.
+        Returns None
     """
     # TODO: Implement the main loop
     addr_dst = socket.gethostbyname(host)
