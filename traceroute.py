@@ -41,3 +41,4 @@ if __name__ == "__main__":
     print("traceroute to %s (%s)" % (dest_name, dest_addr))
     for i, v in enumerate(traceroute(dest_addr)):
         print("%d\t%s" % (i+1, v))
+

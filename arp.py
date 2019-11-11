@@ -23,3 +23,4 @@ def get_arp_table():
         return [block for block in reader]
 
 print(get_arp_table())
+

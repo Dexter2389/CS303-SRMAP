@@ -1,6 +1,5 @@
 """
 Created on Tuesday, October 29, 2019 18:21:41 IST
-
 @author: Saurabh Ghanekar
 """
 
@@ -42,6 +41,5 @@ def dijkstra(graph,start,goal):
     if shortest_distance[goal] != infinity:
         print('Shortest distance is ' + str(shortest_distance[goal]))
         print('And the path is ' + str(path))
- 
- 
+
 dijkstra(graph, 'a', 'd')
