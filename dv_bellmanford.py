@@ -1,3 +1,9 @@
+"""
+Created on Saturday, November 02, 2019 12:19:12 IST
+
+@author: Saurabh Ghanekar
+"""
+
 def bellman_ford(graph, source):
     
     distance, predecessor = dict(), dict()
