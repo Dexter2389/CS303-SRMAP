@@ -17,7 +17,7 @@ ECHO_REQUEST_TYPE = 8
 ECHO_REPLY_TYPE = 0
 ECHO_REQUEST_CODE = 0
 ECHO_REPLY_CODE = 0
-REGISTRARS = ["google.com", "youtube.com", "facebook.com"]
+REGISTRARS = ["google.com"]
 
 
 def print_raw_bytes(pkt: bytes):
